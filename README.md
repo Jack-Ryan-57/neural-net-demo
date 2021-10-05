@@ -10,7 +10,7 @@ I started this project during a lonely, COVID-conscious Winter Break last Decemb
 
 ### Setup
 To run this project:
-    -Clone repository 
+    -Clone repository
     -Run main method in nndemo\src\main\java\com\nndemo\Demo.java
 
 #### Technologies
