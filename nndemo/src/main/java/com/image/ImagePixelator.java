@@ -45,6 +45,7 @@ public class ImagePixelator {
         ImageDoodler.saveImage(b, imgName);
     }
 
+
     public BufferedImage getImg(){
         return output;
     }

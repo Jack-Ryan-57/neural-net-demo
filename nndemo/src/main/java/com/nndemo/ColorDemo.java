@@ -6,6 +6,7 @@ import com.colortraining.ColorTrainer;
 import com.neuralnetwork.NeuralNetwork;
 import com.neuralnetwork.Matrix;
 import com.image.ImageCreator;
+import com.image.ImageOutliner;
 
 import java.awt.*;
 import java.awt.Graphics;
@@ -21,7 +22,7 @@ public class ColorDemo extends JPanel implements MouseListener, MouseMotionListe
 
     boolean dragging = false;
 
-    boolean temp = true, saveTemp = true, simpleTemp = true;
+    boolean temp = true, saveTemp = true, simpleTemp = true, traceTemp = true;
 
     private NeuralNetwork net;
     ColorTrainer ct;
@@ -81,6 +82,7 @@ public class ColorDemo extends JPanel implements MouseListener, MouseMotionListe
         createDoodleButton();
         createSaveButton();
         createSimplifyButton();
+        createTraceButton();
         setBackground(background);
         //Add color gradient to screen 
         BufferedImage img = new ImageCreator("nndemo/assets/img/colorgradient.png").createImage();
@@ -102,7 +104,7 @@ public class ColorDemo extends JPanel implements MouseListener, MouseMotionListe
     public void createDoodleButton(){
         JButton b = new JButton("Create Doodle Image");
         if (temp){
-            b.setLocation(100, 550);
+            b.setLocation(70, 550);
             b.setSize(200, 50);
             b.addActionListener(new ActionListener(){
                 public void actionPerformed(ActionEvent e){
@@ -120,7 +122,7 @@ public class ColorDemo extends JPanel implements MouseListener, MouseMotionListe
     public void createSaveButton(){
         JButton b = new JButton("Save Neural Network Config");
         if (saveTemp){
-            b.setLocation(320, 550);
+            b.setLocation(290, 550);
             b.setSize(200, 50);
             b.addActionListener(new ActionListener(){
                 public void actionPerformed(ActionEvent e){
@@ -137,7 +139,7 @@ public class ColorDemo extends JPanel implements MouseListener, MouseMotionListe
     public void createSimplifyButton(){
         JButton b = new JButton("Simplify Image");
         if (simpleTemp){
-            b.setLocation(540, 550);
+            b.setLocation(510, 550);
             b.setSize(200, 50);
             b.addActionListener(new ActionListener(){
                 public void actionPerformed(ActionEvent e){
@@ -154,6 +156,27 @@ public class ColorDemo extends JPanel implements MouseListener, MouseMotionListe
             simpleTemp = false;
         }
 
+    }
+
+    public void createTraceButton(){
+        JButton b = new JButton("Trace Image");
+        if (traceTemp){
+            b.setLocation(730, 550);
+            b.setSize(200, 50);
+            b.addActionListener(new ActionListener(){
+                public void actionPerformed(ActionEvent e){
+                    File f = new File("painting-condensed.png");
+                    if (f.exists()){
+                        BufferedImage b = new ImageCreator("painting-condensed.png").createImage();
+                        new ImageOutliner(b);
+                    }else{
+                        System.out.println("No Image Exists to Trace");
+                    }
+                }
+            });
+            this.add(b);
+            traceTemp = false;
+        }
     }
 
     @Override

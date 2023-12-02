@@ -25,7 +25,7 @@ public class ColorTrainer {
 
     public ColorTrainer(String dataName){
         this.fileName = dataName;
-        network.setLearningRate(0.096f);
+        network.setLearningRate(0.05f);
         populateHashMap();
         retrieveFileData(dataName);
         train();
